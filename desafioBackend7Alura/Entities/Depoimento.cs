@@ -12,7 +12,7 @@ public class Depoimento
         Id = Guid.NewGuid();
         NomePessoa = obj.NomePessoa ?? throw new ArgumentNullException(nameof(NomePessoa), "O campo NomePessoa não pode ser vazio.");
         ConteudoDepoimento = obj.Depoimento ?? throw new ArgumentNullException(nameof(obj.Depoimento), "O campo NomePessoa não pode ser vazio.");
-        Foto = ToByteArray(obj.Foto!) ?? throw new ArgumentNullException(nameof(Foto), "O campo Foto não pode ser vazio.");
+        Foto = ToByteArray(obj.Foto ?? throw new ArgumentNullException(nameof(Foto), "O campo Foto não pode ser vazio."));
         CriadoEm = DateTime.Now;
     }
 
@@ -27,7 +27,7 @@ public class Depoimento
     byte[] ToByteArray(IFormFile foto)
     {
         using var stream = new MemoryStream();
-        foto.CopyToAsync(stream);
+        foto.CopyTo(stream);
         return stream.ToArray();
     }
 }
