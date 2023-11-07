@@ -17,10 +17,12 @@ public class Depoimento
     }
 
     public Guid Id { get; private set; }
-    public string NomePessoa { get; private set; }
+    public string NomePessoa { get; private set; } = null!;
+
     [MinLength(10, ErrorMessage = "O conteúdo do depoimento deve ter mais que 10 caracteres")]
-    public string ConteudoDepoimento { get; private set; }
-    public byte[] Foto { get; private set; }
+    public string ConteudoDepoimento { get; private set; } = null!;
+
+    public byte[] Foto { get; private set; } = null!;
     public DateTime CriadoEm { get; private set; }
 
 

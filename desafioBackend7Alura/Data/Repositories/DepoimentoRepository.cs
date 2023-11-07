@@ -18,4 +18,15 @@ public class DepoimentoRepository: IDepoimentoRepository
         _databaseContext.Depoimentos.Add(entidade);
         _databaseContext.SaveChanges();
     }
+
+    public Depoimento BuscarPorId(Guid id)
+    {
+        return _databaseContext.Depoimentos.SingleOrDefault(d => d.Id == id)!;
+    }
+
+    public void Excluir(Guid id)
+    {
+        _databaseContext.Depoimentos.Remove(BuscarPorId(id));
+        _databaseContext.SaveChanges();
+    }
 }
