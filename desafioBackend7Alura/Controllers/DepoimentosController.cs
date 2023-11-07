@@ -28,10 +28,6 @@ public class DepoimentosController : ControllerBase
                 
             return Created($"{nameof(BuscarPorId)}/{depoimento.Id}", depoimento.Id);
         }
-        catch (ValidationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
         catch (ArgumentNullException ex)
         {
             return BadRequest(ex.Message);
@@ -48,7 +44,13 @@ public class DepoimentosController : ControllerBase
     {
         try
         {
-            throw new NotImplementedException();
+            var depoimento = _depoimentoService.BuscarPorId(id);
+
+            return Ok(depoimento);
+        }
+        catch (NullReferenceException)
+        {
+            return NotFound();
         }
         catch (Exception ex)
         {
@@ -71,12 +73,18 @@ public class DepoimentosController : ControllerBase
         }
     }
 
-    [HttpDelete]
-    public IActionResult Excluir()
+    [HttpDelete("{id:guid}")]
+    public IActionResult Excluir(Guid id)
     {
         try
         {
-            throw new NotImplementedException();
+            _depoimentoService.Excluir(id);
+
+            return NoContent();
+        }
+        catch (ArgumentNullException)
+        {
+            return NotFound();
         }
         catch (Exception ex)
         {

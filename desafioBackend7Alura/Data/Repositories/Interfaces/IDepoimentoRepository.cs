@@ -5,4 +5,6 @@ namespace desafioBackend7Alura.Data.Repositories.Interfaces;
 public interface IDepoimentoRepository
 {
     void Criar(Depoimento entidade);
+    Depoimento BuscarPorId(Guid id);
+    void Excluir(Guid id);
 }

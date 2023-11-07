@@ -27,7 +27,6 @@ public class DatabaseContext : DbContext
 
         modelBuilder.Entity<Depoimento>().Property(x => x.Foto).IsRequired();
         modelBuilder.Entity<Depoimento>().Property(x => x.CriadoEm).IsRequired();
-
         #endregion
     }
 }
